@@ -1,27 +1,24 @@
 <template>
   <div>
     <el-row>
-      <el-col :span="4">
+      <el-col :span="3">
         <div class="nav-left">
           <div class="nav-logo">
             <img src="../../assets/logo.png">
           </div>
         </div>
       </el-col>
-      <el-col :span="20">
+      <el-col :span="21">
         <div>
           <el-menu :default-active="activeIndex2" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-            <el-menu-item index="1">处理中心</el-menu-item>
+            <el-menu-item index="1">用户中心</el-menu-item>
             <el-submenu index="2">
               <template slot="title">我的工作台</template>
               <el-menu-item index="2-1">选项1</el-menu-item>
               <el-menu-item index="2-2">选项2</el-menu-item>
               <el-menu-item index="2-3">选项3</el-menu-item>
             </el-submenu>
-            <el-menu-item index="3"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item>
-            <el-menu-item index="4">处理中心</el-menu-item>
-            <el-menu-item index="5">处理中心</el-menu-item>
-            <el-menu-item index="6">处理中心</el-menu-item>
+            <el-menu-item index="3">系统设置</el-menu-item>
           </el-menu>
         </div>
       </el-col>
