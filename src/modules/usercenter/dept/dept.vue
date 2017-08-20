@@ -13,7 +13,7 @@
           <div style="text-align: center;border-bottom-left-radius: 4px;border-top-left-radius: 4px;background: #38adff;min-height: 35px; line-height: 35px; font-size: 13px; color: white">部门</div>
         </el-col>
         <el-col :span="12">
-          <div style="text-align: center;;border-bottom-right-radius: 4px;border-top-right-radius: 4px;background: rgba(255, 255, 255, 0.5);min-height: 35px; line-height: 35px;; font-size: 13px;">群组</div>
+          <div class="group-style">群组</div>
         </el-col>
       </el-row>
     </div>
@@ -83,4 +83,13 @@
     margin-top: 10px;
     text-align: left;
   }
+  .group-style{
+    text-align: center;border-bottom-right-radius: 4px;border-top-right-radius: 4px;background: rgba(255, 255, 255, 0.5);min-height: 35px; line-height: 35px;; font-size: 13px;
+  }
+
+  .group-style:active{
+    background: #38adff;
+    color: white;
+  }
+
 </style>
