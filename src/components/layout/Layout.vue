@@ -8,8 +8,8 @@
           </div>
         </div>
       </el-col>
-      <el-col :span="21">
-        <div>
+      <el-col :span="19">
+        <div style="width: 1080px; margin: 0 auto;">
           <el-menu :default-active="activeIndex2" class="el-menu-demo" mode="horizontal" @select="handleSelect">
             <el-menu-item index="1">用户中心</el-menu-item>
             <el-submenu index="2">
