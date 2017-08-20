@@ -37,7 +37,7 @@
               <span>部门成员</span>
             </div>
             <div style="margin-top: 10px; margin-left: 15px;">
-              <student></student>
+              <teacher></teacher>
             </div>
           </el-row>
         </div>
@@ -50,6 +50,7 @@
   import depttree from './dept/dept'
   import student from './student/student'
   import adddeptmodal from './dept/modal'
+  import teacher from './teacher/teacher'
 
   export default {
     data () {
@@ -62,7 +63,7 @@
       handleSelect (key, keyPath) {
       }
     },
-    components: { depttree, student, adddeptmodal }
+    components: { depttree, student, adddeptmodal, teacher }
   }
 </script>
 <style scoped>
