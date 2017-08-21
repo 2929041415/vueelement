@@ -59,6 +59,9 @@
         activeIndex2: '1'
       }
     },
+    created () {
+      this.$store.dispatch('schoolist')
+    },
     methods: {
       handleSelect (key, keyPath) {
       }

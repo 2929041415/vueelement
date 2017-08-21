@@ -10,23 +10,27 @@
     <div style="margin-right: 15px;">
       <div>
         <el-row  style="background: #eef1f6 ">
-          <el-col :span="4"><div class="tablehead-style" ><el-checkbox></el-checkbox></div></el-col>
+          <el-col :span="4">
+            <div class="tablehead-style" >
+            <el-checkbox :indeterminate="isIndeterminate"  @change="handleCheckAllChange"></el-checkbox>
+            </div>
+          </el-col>
           <el-col :span="6"><div class="tablehead-style" >日期</div></el-col>
           <el-col :span="6"><div class="tablehead-style" >姓名</div></el-col>
           <el-col :span="8"><div class="tablehead-style" >地址</div></el-col>
         </el-row>
 
-        <draggable  :move="getdata" @update="datadragEnd">
+
+        <draggable v-model="tableData3"  :move="getdata" @update="datadragEnd">
           <transition-group>
-            <el-row class="colum-style"  v-for="item in tableData3" :key="item.date">
-              <el-col :span="4"><div class="tablecolum-style" ><el-checkbox></el-checkbox></div></el-col>
-              <el-col :span="6"><div class="tablecolum-style" v-text="item.date"></div></el-col>
-              <el-col :span="6"><div class="tablecolum-style" v-text="item.name"></div></el-col>
-              <el-col :span="8"><div class="tablecolum-style" v-text="item.address"></div></el-col>
-            </el-row>
+              <el-row class="colum-style"  v-for="item in tableData3" :key="item.date">
+                <el-col :span="4"><div class="tablecolum-style" ><el-checkbox></el-checkbox></div></el-col>
+                <el-col :span="6"><div class="tablecolum-style" v-text="item.date"></div></el-col>
+                <el-col :span="6"><div class="tablecolum-style" v-text="item.name"></div></el-col>
+                <el-col :span="8"><div class="tablecolum-style" v-text="item.address"></div></el-col>
+              </el-row>
           </transition-group>
         </draggable>
-
       </div>
 
       <el-pagination class="pagestyle"
@@ -79,7 +83,9 @@
         }],
         multipleSelection: [],
         currentPage4: 4,
-        smallpage: true
+        smallpage: true,
+        checUserkList: [],
+        isIndeterminate: false
       }
     },
     components: { draggable },
@@ -103,12 +109,14 @@
         console.log(`当前页: ${val}`)
       },
       getdata (evt) {
-        console.log(evt.draggedContext.element.id)
+        console.log(evt.draggedContext.element.date)
       },
       datadragEnd (evt) {
         console.log('拖动前的索引 :' + evt.oldIndex)
         console.log('拖动后的索引 :' + evt.newIndex)
-        console.log(this.tags)
+        console.log(this.tableData3)
+      },
+      handleCheckAllChange () {
       }
     }
   }
