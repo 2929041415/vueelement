@@ -4,27 +4,33 @@
       <el-input
         placeholder="搜索"
         icon="search"
+        v-model="filterText"
         >
       </el-input>
     </div>
     <div style="margin-top: 10px;">
       <el-row>
         <el-col :span="12">
-          <div style="text-align: center;border-bottom-left-radius: 4px;border-top-left-radius: 4px;background: #38adff;min-height: 35px; line-height: 35px; font-size: 13px; color: white">部门</div>
+          <div  :class="{'dept_style' : isdept, 'group_style' : isgroup}" @click="chooseorg('1')">部门</div>
         </el-col>
         <el-col :span="12">
-          <div class="group-style">群组</div>
+          <div  :class="{'group_style' : isdept, 'dept_style' : isgroup}" @click="chooseorg('2')">群组</div>
         </el-col>
       </el-row>
     </div>
 
+
     <div class="deptstyle">
-      <el-tree
+      <el-tree class="treestyle"
         :data="products"
         :props="defaultProps"
         :highlight-current="highlight"
         accordion
-        @node-click="handleNodeClick">
+        :default-expand-all="expandall"
+        @node-click="handleNodeClick"
+        :filter-node-method="filterNode"
+        ref="tree2"
+      >
       </el-tree>
     </div>
   </div>
@@ -39,7 +45,11 @@
         defaultProps: {
           children: 'nodes',
           label: 'text'
-        }
+        },
+        filterText: '',
+        expandall: false,
+        isdept: true,
+        isgroup: false
       }
     },
     computed: {
@@ -49,6 +59,27 @@
     },
     methods: {
       handleNodeClick (data) {
+      },
+      filterNode (value, data) {
+        if (!value) return true
+        return data.text.indexOf(value) !== -1
+      },
+      chooseorg (val) {
+        if (val === '1') {
+          this.isdept = true
+          this.isgroup = false
+        } else {
+          this.isdept = false
+          this.isgroup = true
+        }
+      }
+    },
+    watch: {
+      filterText (val) {
+        if (val === '') {
+          this.expandall = false
+        }
+        this.$refs.tree2.filter(val)
       }
     }
   }
@@ -57,16 +88,16 @@
   .deptstyle{
     margin-top: 10px;
     text-align: left;
-    height: 500px;
-    overflow-y: auto;
   }
-  .group-style{
+  .group_style{
     text-align: center;border-bottom-right-radius: 4px;border-top-right-radius: 4px;background: rgba(255, 255, 255, 0.5);min-height: 35px; line-height: 35px;; font-size: 13px;
   }
 
-  .group-style:active{
-    background: #38adff;
-    color: white;
+  .dept_style{
+    text-align: center;border-bottom-left-radius: 4px;border-top-left-radius: 4px;background: #38adff;min-height: 35px; line-height: 35px; font-size: 13px; color: white
   }
 
+  .treestyle{
+    height: 500px; overflow-y: auto;
+  }
 </style>
