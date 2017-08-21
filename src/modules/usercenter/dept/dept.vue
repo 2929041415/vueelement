@@ -17,10 +17,12 @@
         </el-col>
       </el-row>
     </div>
+
     <div class="deptstyle">
       <el-tree
-        :data="data"
+        :data="products"
         :props="defaultProps"
+        :highlight-current="highlight"
         accordion
         @node-click="handleNodeClick">
       </el-tree>
@@ -28,49 +30,22 @@
   </div>
 </template>
 <script>
+  import { mapGetters } from 'vuex'
+
   export default {
     data () {
       return {
-        data: [{
-          label: '教务处',
-          children: [{
-            label: '二级 1-1',
-            children: [{
-              label: '三级 1-1-1'
-            }]
-          }]
-        }, {
-          label: '审计处',
-          children: [{
-            label: '二级 2-1',
-            children: [{
-              label: '三级 2-1-1'
-            }]
-          }, {
-            label: '二级 2-2',
-            children: [{
-              label: '三级 2-2-1'
-            }]
-          }]
-        }, {
-          label: '德育处',
-          children: [{
-            label: '二级 3-1',
-            children: [{
-              label: '三级 3-1-1'
-            }]
-          }, {
-            label: '二级 3-2',
-            children: [{
-              label: '三级 3-2-1'
-            }]
-          }]
-        }],
+        highlight: true,
         defaultProps: {
-          children: 'children',
-          label: 'label'
+          children: 'nodes',
+          label: 'text'
         }
       }
+    },
+    computed: {
+      ...mapGetters({
+        products: 'schoolTreeData'
+      })
     },
     methods: {
       handleNodeClick (data) {
@@ -82,6 +57,8 @@
   .deptstyle{
     margin-top: 10px;
     text-align: left;
+    height: 500px;
+    overflow-y: auto;
   }
   .group-style{
     text-align: center;border-bottom-right-radius: 4px;border-top-right-radius: 4px;background: rgba(255, 255, 255, 0.5);min-height: 35px; line-height: 35px;; font-size: 13px;

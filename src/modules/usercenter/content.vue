@@ -60,7 +60,7 @@
       }
     },
     created () {
-      this.$store.dispatch('schoolist')
+      this.$store.dispatch('schootreelist')
     },
     methods: {
       handleSelect (key, keyPath) {

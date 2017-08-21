@@ -1,1 +1,2 @@
 export const SCHOOL_DATA_LIST = 'SCHOOL_DATA_LIST'
+export const SCHOOL_TREE_LIST = 'SCHOOL_TREE_LIST'

@@ -15,53 +15,46 @@ axios.interceptors.response.use(function (response) {
   return Promise.reject(error)
 })
 
-export default function request (options) {
-  return fetch(options).then((response) => {
-    const { statusText, status } = response
-    let data = response.data
-    if (data instanceof Array) {
-      data = {
-        list: data
-      }
-    }
-    return {
-      success: true,
-      message: statusText,
-      statusCode: status,
-      ...data
-    }
-  }).catch((error) => {
-    const { response } = error
-    let msg
-    let statusCode
-    if (response && response instanceof Object) {
-      const { data, statusText } = response
-      statusCode = response.status
-      msg = data.message || statusText
-    } else {
-      statusCode = 600
-      msg = error.message || 'Network Error'
-    }
-    return { success: false, statusCode, message: msg }
-  })
-}
+/* 超时时间 */
+axios.defaults.timeout = 15000
 
-const fetch = (options) => {
-  const { method, data, url } = options
-  const cloneData = qs.stringify(data, { skipNulls: true })
-
-  switch (method.toLowerCase()) {
-    case 'get':
-      return axios.get(url, {
-        params: cloneData
-      })
-    case 'post':
-      return axios.post(url, cloneData, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
-    case 'put':
-      return axios.put(url, cloneData)
-    case 'patch':
-      return axios.patch(url, cloneData)
-    default:
-      return axios(options)
+class request {
+  static Get (url) {
+    /* 通过Promise完成异步操作，将数据进行初步处理输出为Json对象 */
+    return new Promise((resolve, reject) => {
+      axios.get(url)
+        .then((res) => {
+          switch (res.status) {
+            case 0:
+              break
+            default:
+              resolve(res.data)
+              break
+          }
+        }).catch((error) => {
+          reject(error)
+        })
+    })
+  }
+  static Post (url, data) {
+    /* 通过Promise完成异步操作，将数据进行初步处理输出为Json对象 */
+    const cloneData = qs.stringify(data, { skipNulls: true })
+    const P = new Promise((resolve, reject) => {
+      axios.post(url, cloneData, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+        .then((res) => {
+          switch (res.status) {
+            case 0:
+              break
+            default:
+              resolve(res.data)
+              break
+          }
+        }).catch((error) => {
+          reject(error)
+        })
+    })
+    return P
   }
 }
+
+export default request
