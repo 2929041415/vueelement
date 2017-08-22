@@ -11,10 +11,10 @@
     <div style="margin-top: 10px;">
       <el-row>
         <el-col :span="12">
-          <div  :class="{'dept_style' : isdept, 'group_style' : isgroup}" @click="chooseorg('1')">部门</div>
+          <div  class="dept_style" @click="chooseorg('/')">部门</div>
         </el-col>
         <el-col :span="12">
-          <div  :class="{'group_style' : isdept, 'dept_style' : isgroup}" @click="chooseorg('2')">群组</div>
+          <div  class="group_style" @click="chooseorg('/usergroup')">群组</div>
         </el-col>
       </el-row>
     </div>
@@ -29,8 +29,7 @@
         :default-expand-all="expandall"
         @node-click="handleNodeClick"
         :filter-node-method="filterNode"
-        ref="tree2"
-      >
+        ref="tree2">
       </el-tree>
     </div>
   </div>
@@ -47,9 +46,7 @@
           label: 'text'
         },
         filterText: '',
-        expandall: false,
-        isdept: true,
-        isgroup: false
+        expandall: false
       }
     },
     computed: {
@@ -65,13 +62,7 @@
         return data.text.indexOf(value) !== -1
       },
       chooseorg (val) {
-        if (val === '1') {
-          this.isdept = true
-          this.isgroup = false
-        } else {
-          this.isdept = false
-          this.isgroup = true
-        }
+        this.$router.push(val)
       }
     },
     watch: {

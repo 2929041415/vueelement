@@ -3,7 +3,7 @@
     <el-row>
       <el-col :span="5" :push="1">
         <div style="margin-top: 18px;">
-          <depttree></depttree>
+          <grouptree></grouptree>
         </div>
       </el-col>
       <el-col :span="19" :push="1">
@@ -47,10 +47,11 @@
 </template>
 
 <script>
-  import depttree from './dept/dept'
+  import grouptree from './group/group.vue'
   import student from './student/student'
   import adddeptmodal from './dept/modal'
   import teacher from './teacher/teacher'
+  import * as actiontypes from '../../store/action-types'
 
   export default {
     data () {
@@ -60,13 +61,13 @@
       }
     },
     created () {
-      this.$store.dispatch('schootreelist')
+      this.$store.dispatch(actiontypes.GROUP_DATA_ACTION)
     },
     methods: {
       handleSelect (key, keyPath) {
       }
     },
-    components: { depttree, student, adddeptmodal, teacher }
+    components: { grouptree, student, adddeptmodal, teacher }
   }
 </script>
 <style scoped>

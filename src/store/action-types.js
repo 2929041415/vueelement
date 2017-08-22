@@ -1,0 +1,1 @@
+export const GROUP_DATA_ACTION = 'GROUP_DATA_ACTION'

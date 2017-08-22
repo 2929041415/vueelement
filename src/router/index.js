@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import UserCenter from '../modules/usercenter/content'
+import UserDeptCenter from '../modules/usercenter/content'
+import UserGroupCenter from '../modules/usercenter/deptcontent'
 
 Vue.use(Router)
 
@@ -8,8 +9,13 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'UserCenter',
-      component: UserCenter
+      name: 'UserDeptCenter',
+      component: UserDeptCenter
+    },
+    {
+      path: '/usergroup',
+      name: 'UserGroupCenter',
+      component: UserGroupCenter
     }
   ]
 })
