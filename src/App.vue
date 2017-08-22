@@ -2,7 +2,7 @@
   <div id="app">
     <Layout></Layout>
     <div class="mainstyle" style="background-color: #e7e8eb">
-      <div class="contentstyle">
+      <div class="contentstyle" v-loading="commonloading"  element-loading-text="拼命加载中">
         <router-view></router-view>
       </div>
     </div>
@@ -14,8 +14,12 @@
 
   export default {
     name: 'app',
+    computed: {
+      commonloading () {
+        return this.$store.state.loadmodule.loadingstatus
+      }
+    },
     components: {Layout}
-
   }
 </script>
 

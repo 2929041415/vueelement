@@ -1,8 +1,11 @@
 import axios from 'axios'
 import qs from 'qs'
+import { CHANGE_LOAD_STATUS } from '../store/action-types'
+import store from '../store/main'
 
 /* 请求时的拦截 */
 axios.interceptors.request.use(function (config) {
+  store.dispatch(CHANGE_LOAD_STATUS, true)
   return config
 }, function (error) {
   return Promise.reject(error)
@@ -10,6 +13,7 @@ axios.interceptors.request.use(function (config) {
 
 /* 响应时拦截 */
 axios.interceptors.response.use(function (response) {
+  store.dispatch(CHANGE_LOAD_STATUS, false)
   return response
 }, function (error) {
   return Promise.reject(error)
