@@ -22,7 +22,7 @@
 
     <div class="deptstyle">
       <el-tree class="treestyle"
-        :data="products"
+        :data="deptdatas"
         :props="defaultProps"
         :highlight-current="highlight"
         accordion
@@ -35,8 +35,6 @@
   </div>
 </template>
 <script>
-  import { mapGetters } from 'vuex'
-
   export default {
     data () {
       return {
@@ -50,9 +48,9 @@
       }
     },
     computed: {
-      ...mapGetters({
-        products: 'schoolTreeData'
-      })
+      deptdatas () {
+        return this.$store.state.dept.depttree
+      }
     },
     methods: {
       handleNodeClick (data) {

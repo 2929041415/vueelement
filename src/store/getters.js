@@ -5,3 +5,4 @@ export const schoolTreeData = state => {
 export const groupTreeData = state => {
   return state.group.grouptree
 }
+

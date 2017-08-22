@@ -3,7 +3,7 @@
     <el-row>
       <el-col :span="5" :push="1">
         <div style="margin-top: 18px;">
-          <grouptree></grouptree>
+          <depttree></depttree>
         </div>
       </el-col>
       <el-col :span="19" :push="1">
@@ -12,19 +12,19 @@
             <el-col :span="5">
               <div style="margin-left: 15px; margin-top: 10px;">
                 <i class="el-icon-share"></i>
-                <span>群组</span>
+                <span>下级部门</span>
               </div>
             </el-col>
           </el-row>
           <el-row>
             <div style="background: #eceff4; min-height: 42px; line-height: 42px; margin-left: 15px; margin-right: 15px;">
               <div style="float: left; margin-left: 10px;">
-                <el-button size="small">添加群组</el-button>
+                <el-button size="small" @click="adddept">添加子部门</el-button>
               </div>
             </div>
             <div class="deptrightstyle">
               <div style="float: left; margin-left: 10px; font-size: 13px;">
-                教师组(12人)
+                审计处(12人)
               </div>
               <div style="float: right;font-size: 11px;">
                 <i class="el-icon-arrow-right" ></i>
@@ -34,7 +34,7 @@
           <el-row>
             <div style="margin-left: 15px; margin-top: 40px;">
               <i class="el-icon-share"></i>
-              <span>群组成员</span>
+              <span>部门成员</span>
             </div>
             <div style="margin-top: 10px; margin-left: 15px;">
               <teacher></teacher>
@@ -43,15 +43,19 @@
         </div>
       </el-col>
     </el-row>
+
+
+    <adddeptmodal></adddeptmodal>
+
   </div>
 </template>
 
 <script>
-  import grouptree from './group/group.vue'
+  import depttree from './dept/dept'
   import student from './student/student'
   import adddeptmodal from './dept/modal'
   import teacher from './teacher/teacher'
-  import * as actiontypes from '../../store/action-types'
+  import { CHANGE_DEPT_MODAL, DEPT_DATA_ACTION } from '../../store/action-types'
 
   export default {
     data () {
@@ -61,13 +65,16 @@
       }
     },
     created () {
-      this.$store.dispatch(actiontypes.GROUP_DATA_ACTION)
+      this.$store.dispatch(DEPT_DATA_ACTION)
     },
     methods: {
       handleSelect (key, keyPath) {
+      },
+      adddept () {
+        this.$store.dispatch(CHANGE_DEPT_MODAL, true)
       }
     },
-    components: { grouptree, student, adddeptmodal, teacher }
+    components: { depttree, student, adddeptmodal, teacher }
   }
 </script>
 <style scoped>

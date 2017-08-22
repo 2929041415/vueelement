@@ -4,6 +4,7 @@ import * as actions from './actions'
 import * as getters from './getters'
 import school from './modules/school'
 import group from './modules/group'
+import dept from './modules/dept'
 import loadmodule from './modules/loading'
 
 Vue.use(Vuex)
@@ -14,6 +15,7 @@ export default new Vuex.Store({
   modules: {
     school,
     group,
+    dept,
     loadmodule
   }
 })

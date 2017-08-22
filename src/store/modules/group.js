@@ -4,12 +4,18 @@ import * as groupservice from '../../services/group'
 
 /* 初始化群组数据 */
 const state = {
-  grouptree: []
+  grouptree: [],
+  modalstatus: false,
+  modalshowstatus: false
 }
 
 const mutations = {
   [types.GROUP_TREE_LIST] (state, {data}) {
     state.grouptree = data
+  },
+  [types.CHANGE_GROUP_MODAL] (state, {data}) {
+    state.modalshowstatus = false
+    state.modalstatus = data
   }
 }
 
@@ -23,6 +29,9 @@ const actions = {
       })
       commit(types.GROUP_TREE_LIST, { data })
     })
+  },
+  [actiontypes.CHANGE_GROUP_MODAL] ({ commit }, data) {
+    commit(types.CHANGE_GROUP_MODAL, { data })
   }
 }
 

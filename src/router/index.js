@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import UserDeptCenter from '../modules/usercenter/content'
-import UserGroupCenter from '../modules/usercenter/deptcontent'
+import UserDeptCenter from '../modules/usercenter/deptcontent'
+import UserGroupCenter from '../modules/usercenter/groupcontent'
 
 Vue.use(Router)
 
