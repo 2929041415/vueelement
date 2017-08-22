@@ -1,5 +1,6 @@
 export default {
-  schoolist: '/uums/schoolManage/findSchool',
-  schooltree: '/uums/departmentManage/getTree'
+  schoolist: 'schoolManage/findSchool',
+  schooltree: 'departmentManage/getTree',
+  grouptree: 'groupinfo/getAllGroup'
 }
 
